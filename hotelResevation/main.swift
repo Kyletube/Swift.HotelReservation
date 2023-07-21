@@ -2,6 +2,7 @@ import Foundation
 
 class Hotel {
     var myMoney = 0
+    var roomNumber:[String] = []
     
     func showMenu() {
         print("")
@@ -55,6 +56,84 @@ class Hotel {
         print("방 번호, 체크인 날짜, 체크아웃 날짜를 각각 입력해주세요.")
         print("-------------------------------")
         print("방 번호를 입력하세요")
+        
+        if let roomInput = readLine(), let roomNumber = Int(roomInput) {
+            if roomNumber >= 1 && roomNumber <= 6 {
+                print("체크인 날짜를 입력하세요 (예: 2023-07-21)")
+                
+                var checkInDate = ""
+                
+                while true {
+                    if let Input = readLine() {
+                        if isDate(Input) {
+                            checkInDate = Input
+                            print(checkInDate)
+                            break
+                        } else {
+                            print("올바른 날짜 형식이 아닙니다. 다시 입력 해주세요 (ex: 2023-07-01)")
+                        }
+                    }
+                }
+                
+                print("체크아웃 날짜를 입력하세요 (예: 2023-07-25)")
+                
+                var checkOutDate = ""
+                        
+                while true {
+                    if let Input = readLine() {
+                        if isDate(Input) {
+                            checkOutDate = Input
+                            print(checkOutDate)
+                            break
+                        } else {
+                            print("올바른 날짜 형식이 아닙니다. 다시 입력 해주세요 (ex: 2023-07-01)")
+                        }
+                    }
+                }
+                print("호텔 방 \(roomNumber) 예약이 완료되었습니다.")
+                
+            } else {
+                print("존재하지 않는 방 번호입니다.")
+            }
+        } else {
+            print("유효하지 않은 입력입니다.")
+        }
+    }
+    
+    func backToMenu() {
+        print("")
+        print("뒤로 가시려면 10을 입력해주세요")
+        while true {
+            if let input = readLine(), let selectNumber = Int(input) {
+                if selectNumber == 10 {
+                    showMenu()
+                    break
+                } else {
+                    print("뒤로 가시려면 10을 입력해주세요")
+                }
+            }
+        }
+    }
+//    func backToMenu () { // 함수내에서 자신을 다시 호출하는 재귀함수 호출스택이 쌓이게되면 메모리 사용량이 증가할 수 있고 오버플로우의 위험이 있음
+//        if let back = readLine(), let backNumber = Int(back) {
+//            if backNumber == 10 {
+//                showMenu()
+//            } else {
+//                print("뒤로 가시려면 10을 입력해주세요")
+//                backToMenu()
+//            }
+//        }
+//    }
+    
+    func isDate(_ date: String) -> Bool {
+        let yymmdd = DateFormatter()
+        yymmdd.dateFormat = "yyyy-mm-dd"
+        if let realDate = yymmdd.date(from: date) {
+            print(realDate)
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -72,11 +151,13 @@ while menu {
         switch selectNumber {
         case 1:
             hotel.giveMoney()
-            hotel.showMenu()
+            hotel.backToMenu()
         case 2:
             hotel.viewRooms()
-            hotel.showMenu()
-            
+            hotel.backToMenu()
+        case 3:
+            hotel.reservation()
+            hotel.backToMenu()
         case 10:
             print("서비스를 종료합니다")
             menu = false
