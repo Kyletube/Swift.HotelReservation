@@ -34,21 +34,18 @@ class Hotel {
     }
     
     func viewRooms() {
-        let price1 = Int.random(in: 10...50) * 1000
-        let price2 = Int.random(in: 40...90) * 1000
-        let price3 = Int.random(in: 90...110) * 1000
-        let price4 = Int.random(in: 110...150) * 1000
-        let price5 = Int.random(in: 200...400) * 1000
-        let price6 = Int.random(in: 550...900) * 1000
+        let roomPrices = [Int.random(in: 10...50) * 1000,
+                              Int.random(in: 40...90) * 1000,
+                              Int.random(in: 90...110) * 1000,
+                              Int.random(in: 110...150) * 1000,
+                              Int.random(in: 200...400) * 1000,
+                              Int.random(in: 550...900) * 1000]
         
-        print("1번방은 \(price1)원 입니다.")
-        print("2번방은 \(price2)원 입니다.")
-        print("3번방은 \(price3)원 입니다.")
-        print("4번방은 \(price4)원 입니다.")
-        print("5번방은 \(price5)원 입니다.")
-        print("6번방은 \(price6)원 입니다.")
-        print("7번방은 선물 입니다. ^^")
-    }
+        for (index, price) in roomPrices.enumerated() {
+                print("\(index + 1)번방은 \(price)원 입니다.")
+            }
+            print("7번방은 선물 입니다. ^^")
+        }
     
     func reservation() {
         print("")
@@ -127,9 +124,8 @@ class Hotel {
     
     func isDate(_ date: String) -> Bool {
         let yymmdd = DateFormatter()
-        yymmdd.dateFormat = "yyyy-mm-dd"
+        yymmdd.dateFormat = "yyyy-MM-dd"
         if let realDate = yymmdd.date(from: date) {
-            print(realDate)
             return true
         } else {
             return false
