@@ -3,6 +3,7 @@ import Foundation
 class Hotel {
     var myMoney = 0
     var roomNumber:[String] = []
+    var reservationList: [(roomNumber: Int, checkInDate: String, checkOutDate: String)] = []
     
     func showMenu() {
         print("")
@@ -87,6 +88,7 @@ class Hotel {
                         }
                     }
                 }
+                reservationList.append((roomNumber: roomNumber, checkInDate: checkInDate, checkOutDate: checkOutDate))
                 print("호텔 방 \(roomNumber) 예약이 완료되었습니다.")
                 
             } else {
@@ -97,6 +99,16 @@ class Hotel {
         }
     }
     
+    func viewMyReservationList() {
+        print("나의 예약 목록")
+        if reservationList.isEmpty {
+            print("예약한 객실이 없습니다.")
+        } else {
+            for (index, reservation) in reservationList.enumerated() {
+                print("예약 번호: \(index + 1), 방 번호: \(reservation.roomNumber), 체크인 날짜: \(reservation.checkInDate), 체크아웃 날짜: \(reservation.checkOutDate)")
+            }
+        }
+    }
     func backToMenu() {
         print("")
         print("뒤로 가시려면 10을 입력해주세요")
@@ -153,6 +165,9 @@ while menu {
             hotel.backToMenu()
         case 3:
             hotel.reservation()
+            hotel.backToMenu()
+        case 4:
+            hotel.viewMyReservationList()
             hotel.backToMenu()
         case 10:
             print("서비스를 종료합니다")
