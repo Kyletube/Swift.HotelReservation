@@ -123,16 +123,7 @@ class Hotel {
             }
         }
     }
-//    func backToMenu () { // 함수내에서 자신을 다시 호출하는 재귀함수 호출스택이 쌓이게되면 메모리 사용량이 증가할 수 있고 오버플로우의 위험이 있음
-//        if let back = readLine(), let backNumber = Int(back) {
-//            if backNumber == 10 {
-//                showMenu()
-//            } else {
-//                print("뒤로 가시려면 10을 입력해주세요")
-//                backToMenu()
-//            }
-//        }
-//    }
+
     
     func isDate(_ date: String) -> Bool {
         let yymmdd = DateFormatter()
@@ -179,3 +170,13 @@ while menu {
 }
 
 
+//    func backToMenu () { // 함수내에서 자신을 다시 호출하는 재귀함수 호출스택이 쌓이게되면 메모리 사용량이 증가할 수 있고 오버플로우의 위험이 있음
+//        if let back = readLine(), let backNumber = Int(back) {
+//            if backNumber == 10 {
+//                showMenu()
+//            } else {
+//                print("뒤로 가시려면 10을 입력해주세요")
+//                backToMenu()
+//            }
+//        }
+//    }
